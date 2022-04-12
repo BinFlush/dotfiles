@@ -1,5 +1,5 @@
 #!/bin/bash
-FILE=/home/jakupl/.xmonad/clicker/leftdown
+FILE=/tmp/leftdown
 if [ -f "$FILE" ]; then
 	xdotool mouseup 1
 	rm $FILE
