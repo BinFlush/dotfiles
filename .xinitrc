@@ -61,7 +61,7 @@ nm-applet &
 #nitrogen --restore &
 nitrogen --set-scaled --random ~/Pictures/wallpapers/wallpapers &
 bash ~/.xmonad/battery/batterynotification.sh &
-picom -D 4 &
+picom --experimental-backends -D 4 &
 unclutter --timeout 8 &
 rm -rf /home/jakupl/Downloads/* &
 export EDITOR=nvim
