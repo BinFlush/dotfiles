@@ -9,6 +9,6 @@ else
     amixer set Master unmute
     amixer set Front unmute
     amixer set Headphone unmute
-    vol=$(amixer get Master | awk -F'[]%[]' '/%/ {if ($7 == "off") { print "MM" } else { print $2 }}' | head -n 1)
+    vol=$(amixer get Master | awk -F'[]%[]' '{ print $2 }' | tail -n 1)
     dunstify -a "volumeChange" -i audio-volume-high-symbolic.symbolic -u low -h string:x-dunst-stack-tag:tag  -h int:value:"$vol" "Unmuted - $vol%"
 fi
