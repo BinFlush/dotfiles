@@ -94,8 +94,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm, xK_plus     ), spawn "/home/jakupl/.xmonad/wsnr.sh")
 
     -- Volume controls
-    , ((0                     , 0x1008FF11), spawn "/home/jakupl/.xmonad/volume/volumedown.sh")
-    , ((0                     , 0x1008FF13), spawn "/home/jakupl/.xmonad/volume/volumeup.sh")
+    , ((0                     , 0x1008FF11), spawn "/home/jakupl/.xmonad/volume/volume.py dn")
+    , ((0                     , 0x1008FF13), spawn "/home/jakupl/.xmonad/volume/volume.py up")
     , ((0                     , 0x1008FF12), spawn "/home/jakupl/.xmonad/volume/togglemute.sh")
     
     -- brightness control
