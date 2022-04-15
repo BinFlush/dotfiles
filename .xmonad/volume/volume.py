@@ -33,6 +33,6 @@ else:
 os.system(command.format(plusorminus=sign, amount=step))
 # Send notification using dunst
 notify_command = 'dunstify -a "volumeChange" -u low -h string:x-dunst-stack-tag:tag -h int:value:"{newval}" "{newval}%"'
-os.system(notify_command.format(newval=round(new,1)))
+os.system(notify_command.format(newval=round(new)))
 
 #print(output)
