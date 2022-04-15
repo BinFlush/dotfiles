@@ -19,7 +19,7 @@ if sys.argv[1] == "up":
     if current < 5:
         step=1
     sign = "+"
-    new = current + step
+    new = min(100, current + step)
 elif sys.argv[1] == "dn":
     if current <= 5:
         step=1
