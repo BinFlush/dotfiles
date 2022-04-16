@@ -2,14 +2,14 @@
 import os
 
 ## get current notification status
-stream = os.popen('dunstctl is-paused')
-current = stream.read().rstrip()
+# stream = os.popen('dunstctl is-paused')
+# current = stream.read().rstrip()
 
-if stream == 'false':
-    msg = 'notifications muted'
-elif stream == 'true':
-    msg = 'notifications unmuted'
+# if stream == 'false':
+    # msg = 'notifications muted'
+# elif stream == 'true':
+    # msg = 'notifications unmuted'
 
-os.system('dunstify -h string:x-dunst-stack-tag:test "notification toggle"')
+os.system('dunstify -h string:x-dunst-stack-tag:test "Notifications ON"')
 os.system('dunstctl set-paused toggle')
 
