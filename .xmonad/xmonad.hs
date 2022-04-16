@@ -101,6 +101,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- brightness control
     , ((0                     , 0x1008ff02), spawn "/home/jakupl/.xmonad/brightness/bright.py up")
     , ((0                     , 0x1008ff03), spawn "/home/jakupl/.xmonad/brightness/bright.py dn")
+    -- toggle notifications
+    , ((modm, xK_Escape), spawn "/home/jakupl/.xmonad/notify-mute.py")
+
 
     -- Keyboard Layout switcher
     , ((modm .|. shiftMask, xK_Escape), spawn "/home/jakupl/customscripts/layout_switch.sh")
