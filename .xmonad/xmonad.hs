@@ -110,6 +110,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- toggle fullscreen
     , ((modm .|. shiftMask, xK_f), sendMessage ToggleLayout )
+    -- lock screen
+    , ((modm .|. shiftMask, xK_l), spawn "/home/jakupl/.xmonad/lockscreen_blur.sh")
 
     -- Sagemath scratchpad
     , ((modm,   xK_b), namedScratchpadAction myScratchPads "terminal")
