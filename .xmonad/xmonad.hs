@@ -105,13 +105,17 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm, xK_Escape), spawn "/home/jakupl/.xmonad/notify-mute.py")
 
 
+    -- toggle lockscreen
+    , ((modm .|. shiftMask, xK_Escape), spawn "/home/jakupl/.xmonad/lockscreen_blur.py toggle")
+
+
     -- Keyboard Layout switcher
-    , ((modm .|. shiftMask, xK_Escape), spawn "/home/jakupl/customscripts/layout_switch.sh")
+    -- , ((modm .|. shiftMask, xK_Escape), spawn "/home/jakupl/customscripts/layout_switch.sh")
 
     -- toggle fullscreen
     , ((modm .|. shiftMask, xK_f), sendMessage ToggleLayout )
     -- lock screen
-    , ((modm .|. shiftMask, xK_l), spawn "/home/jakupl/.xmonad/lockscreen_blur.sh")
+    , ((modm .|. shiftMask, xK_l), spawn "/home/jakupl/.xmonad/lockscreen_blur.py lock")
 
     -- Sagemath scratchpad
     , ((modm,   xK_b), namedScratchpadAction myScratchPads "terminal")

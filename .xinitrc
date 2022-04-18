@@ -63,6 +63,8 @@ nitrogen --set-scaled --random ~/Pictures/wallpapers/wallpapers &
 bash ~/.xmonad/battery/batterynotification.sh &
 picom --experimental-backends -D 4 &
 unclutter --timeout 8 &
+xautolock -time 5 -locker "~/.xmonad/lockscreen_blur.py lock" &
+touch /tmp/.lockon &
 rm -rf /home/jakupl/Downloads/* &
 export EDITOR=nvim
 exec xmonad
