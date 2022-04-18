@@ -10,7 +10,14 @@ oldcharg="unset"
 main() {
     sleep 10
     getstatus
-    getbatt
+    ## Set correct initial acpi status
+    if [ "$charging" == "Discharging," ]
+    then
+        xset s on +dpms
+    else
+        xset s off -dpms
+    fi
+
     
     if [ $battery_level -lt $((marginone+1)) ]
     then
@@ -19,8 +26,6 @@ main() {
     while true
     do
         getstatus
-        getcharg
-        getbatt
         if [ "$oldcharg" == "Discharging," ] && [ "$charging" == "Charging," ]
         then
             batteryon
@@ -72,15 +77,7 @@ main() {
 
 getstatus() {
     status=$(acpi -b)
-}
-
-
-getcharg() {
     charging=$(echo $status | awk '{print $3}')
-}
-
-
-getbatt() {
     battery_level=$(echo $status | grep -P -o '[0-9]+(?=%)') #define command getbatt. should store percentage as int
 }
 
@@ -95,18 +92,21 @@ alarmmess() {
 batteryon() {
     aplay /home/jakupl/.xmonad/battery/batteryon.wav &
     dunstify -a "chargestatus" -u normal -h string:x-dunst-stac-tag:tag "Charging"
+    xset s off -dpms
 }
 
 
 batteryoff() {
     aplay /home/jakupl/.xmonad/battery/batteryoff.wav &
     dunstify -a "chargestatus" -u normal -h string:x-dunst-stac-tag:tag "Discharging"
+    xset s on +dpms
 }
 
 
 batteryfull() {
     aplay /home/jakupl/.xmonad/battery/batteryfull.wav &
     dunstify -a "chargestatus" -u normal -h string:x-dunst-stac-tag:tag "Charging (full)"
+    xset s off -dpms
 }
 
 

@@ -12,7 +12,15 @@ if sys.argv[1] == "lock":
     os.system("scrot -oF {picture}".format(picture=PICTURE))
     os.system("convert -scale 10% -blur 0x2.5 -resize 1000% {picture} {blurred}".format(picture=PICTURE, blurred=BLURRED))
     os.system("rm {picture}".format(picture=PICTURE))
-    os.system("i3lock -tf -i {blurred}".format(blurred=BLURRED))
+    ## check if notifications are on. If yes, turn them off.
+    stream = os.popen('dunstctl is-paused')
+    current = stream.read().rstrip()
+    if current == "false":
+        os.system("dunstctl set-paused true")
+    os.system("i3lock -tf --nofork -i {blurred}".format(blurred=BLURRED))
+    if current == "false":
+        os.system("dunstctl set-paused false")
+        
     sys.exit(0)
 
 if sys.argv[1] == "toggle":
