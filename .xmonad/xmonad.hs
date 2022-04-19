@@ -328,7 +328,7 @@ myEventHook = mempty
 -- Set opacity of unfocused windows
 myLogHook :: X ()
 myLogHook = fadeInactiveLogHook fadeAmount
-     where fadeAmount = 0xdddddddd 
+     where fadeAmount = 0xbddddddd
 ------------------------------------------------------------------------
 -- Startup hook
 
