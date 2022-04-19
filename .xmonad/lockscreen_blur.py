@@ -10,7 +10,7 @@ if sys.argv[1] == "lock":
     PICTURE = "/tmp/scsht.png"
     BLURRED = PICTURE + "_blur.png"
     os.system("scrot -oF {picture}".format(picture=PICTURE))
-    os.system("convert -scale 10% -blur 0x2.5 -resize 1000% {picture} {blurred}".format(picture=PICTURE, blurred=BLURRED))
+    os.system("convert -scale 10% -blur 0x2.2 -resize 1000% {picture} {blurred}".format(picture=PICTURE, blurred=BLURRED)) ## This blurs
     os.system("rm {picture}".format(picture=PICTURE))
     ## check if notifications are on. If yes, turn them off.
     stream = os.popen('dunstctl is-paused')
