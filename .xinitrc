@@ -54,14 +54,14 @@ fi
 #xterm -geometry 80x20+494-0 &
 #exec xterm -geometry 80x66+0+0 -name login
 xsetroot -cursor_name left_ptr & # Sets mouse pointer
-setxkbmap fo,dk,us -option grp:ctrls_toggle & # Toggle with both control keys.
+setxkbmap fo,dk -option grp:ctrls_toggle & # Toggle with both control keys.
 xmobar &
 stalonetray &
 nm-applet &
 #nitrogen --restore &
 nitrogen --set-scaled --random ~/Pictures/wallpapers/wallpapers &
 bash ~/.xmonad/battery/batterynotification.sh &
-picom --experimental-backends -D 4 &
+#picom --experimental-backends -D 4 &
 unclutter --timeout 8 &
 xautolock -time 5 -locker "~/.xmonad/lockscreen_blur.py lock" &
 touch /tmp/.lockon &

@@ -36,8 +36,8 @@ import XMonad.Hooks.ManageHelpers
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
--- myTerminal      = "st"
-myTerminal      = "kitty"
+myTerminal      = "st"
+-- myTerminal      = "kitty"
 --
 
 -- Whether focus follows the mouse pointer.
@@ -50,7 +50,7 @@ myClickJustFocuses = True
 
 -- Width of the window border in pixels.
 --
-myBorderWidth   = 1
+myBorderWidth   = 2
 
 -- modMask lets you specify which modkey you want to use. The default
 -- is mod1Mask ("left alt").  You may also consider using mod3Mask
@@ -125,25 +125,30 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     , ((modm,               xK_s     ), namedScratchpadAction myScratchPads "signal-desktop")
     , ((modm,               xK_a     ), namedScratchpadAction myScratchPads "messenger")
+    , ((modm,               xK_n     ), namedScratchpadAction myScratchPads "pymodoro")
     -- launch dmenu
     , ((modm,               xK_p     ), spawn "dmenu_run -nb '#B90000'")
-    , ((0,              0xffbe     ), spawn "xdotool click 1")
+
+
+{-  EMERGENCY MOUSECLICK BINDINGS FOR MY BROKEN LAPTOP
+    , ((0,              0xffbe     ), spawn "sleep 0.1 && xdotool click 1")
+    , ((modm .|. shiftMask,              xK_p     ), spawn "xdotool click 1")
     , ((modm,              0xffbe     ), spawn "/home/jakupl/.xmonad/clicker/lefthold.sh")
     , ((shiftMask,              0xffbe     ), spawn "/home/jakupl/.xmonad/clicker/lefthold.sh")
-    , ((0,              0xffbf     ), spawn "xdotool click 2")
+    , ((0,              0xffbf     ), spawn "sleep 0.1 && xdotool click 2")
     , ((shiftMask,              0xffbf     ), spawn "/home/jakupl/.xmonad/clicker/midhold.sh")
-    , ((0,              0xffc0     ), spawn "xdotool click 3")
+    , ((0,              0xffc0     ), spawn "sleep 0.1 && xdotool click 3")
     , ((modm,              0xffc0     ), spawn "/home/jakupl/.xmonad/clicker/righthold.sh")
     , ((shiftMask,              0xffc0     ), spawn "/home/jakupl/.xmonad/clicker/righthold.sh")
     , ((0,              0xffc1     ), spawn "xdotool click 5")
     , ((0,              0xffc2     ), spawn "xdotool click 4")
-
+-}
 
     -- launch passmenu
     , ((modm,               xK_o     ), spawn "passmenu")
 
     -- launch gmrun
-    , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
+--    , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
 
     -- close focused window
     , ((modm .|. shiftMask, xK_c     ), kill)
@@ -155,7 +160,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
 
     -- Resize viewed windows to the correct size
-    , ((modm,               xK_n     ), refresh)
+--    , ((modm,               xK_n     ), refresh)
 
     -- Move focus to the next window
     , ((modm,               xK_Tab   ), windows W.focusDown)
@@ -297,16 +302,17 @@ myManageHook = composeAll
     , className =? "vlc"           --> doFloat
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore
-    , title  =? "wsnr1"          --> doF W.focusDown <+> doCenterFloat <+> doShift "1" 
-    , title  =? "wsnr2"          --> doF W.focusDown <+> doCenterFloat  <+> doShift "2"
-    , title  =? "wsnr3"          --> doF W.focusDown <+> doCenterFloat  <+> doShift "3"
-    , title  =? "wsnr4"          --> doF W.focusDown <+> doCenterFloat  <+> doShift "4"
-    , title  =? "wsnr5"          --> doF W.focusDown <+> doCenterFloat  <+> doShift "5"
-    , title  =? "wsnr6"          --> doF W.focusDown <+> doCenterFloat  <+> doShift "6"
-    , title  =? "wsnr7"          --> doF W.focusDown <+> doCenterFloat  <+> doShift "7"
-    , title  =? "wsnr8"          --> doF W.focusDown <+> doCenterFloat  <+> doShift "8"
-    , title  =? "wsnr9"          --> doF W.focusDown <+> doCenterFloat  <+> doShift "9"
-    , title  =? "batteryalert"          --> doF W.focusDown <+> doCenterFloat]
+    , title  =? "wsnumber1"          --> doF W.focusDown <+> doCenterFloat <+> doShift "1" 
+    , title  =? "wsnumber2"          --> doF W.focusDown <+> doCenterFloat  <+> doShift "2"
+    , title  =? "wsnumber3"          --> doF W.focusDown <+> doCenterFloat  <+> doShift "3"
+    , title  =? "wsnumber4"          --> doF W.focusDown <+> doCenterFloat  <+> doShift "4"
+    , title  =? "wsnumber5"          --> doF W.focusDown <+> doCenterFloat  <+> doShift "5"
+    , title  =? "wsnumber6"          --> doF W.focusDown <+> doCenterFloat  <+> doShift "6"
+    , title  =? "wsnumber7"          --> doF W.focusDown <+> doCenterFloat  <+> doShift "7"
+    , title  =? "wsnumber8"          --> doF W.focusDown <+> doCenterFloat  <+> doShift "8"
+    , title  =? "wsnumber9"          --> doF W.focusDown <+> doCenterFloat  <+> doShift "9"
+    , title  =? "batteryalert"          --> doF W.focusDown <+> doCenterFloat
+    , title  =? "floatme"       --> doCenterFloat]
 
 ------------------------------------------------------------------------
 -- Event handling
@@ -347,7 +353,7 @@ myStartupHook = do
 --    spawnOnce "unclutter --timeout 8 &"
 --    spawnOnce "echo hey &"
 ------------------------------------------------------------------------
-myScratchPads = [ NS "terminalclean" spawnTermc findTermc manageTermc, NS "terminal" spawnTerm findTerm manageTerm,  NS "signal-desktop" spawnSig findSig manageSig, NS "messenger" spawnMess findMess manageMess]
+myScratchPads = [ NS "terminalclean" spawnTermc findTermc manageTermc, NS "terminal" spawnTerm findTerm manageTerm,  NS "signal-desktop" spawnSig findSig manageSig, NS "messenger" spawnMess findMess manageMess, NS "pymodoro" spawnPom findPom managePom]
 
   where
     spawnTerm  = myTerminal ++ " -T sagepad" ++ " -e sage"
@@ -382,6 +388,10 @@ myScratchPads = [ NS "terminalclean" spawnTermc findTermc manageTermc, NS "termi
         w = 0.8
         t = 0.9 -h
         l = 0.85 -w
+    spawnPom  = "pymodoro"
+    findPom   = title =? "Pymodoro"
+--    managePom = doCenterFloat
+    managePom = doFloatAt 0.4525 0.3
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
 
@@ -390,7 +400,8 @@ myScratchPads = [ NS "terminalclean" spawnTermc findTermc manageTermc, NS "termi
 main = do 
   xmproc <- spawnPipe "xmobar -x 0 /home/jakup/.config/xmobar/xmobarrc"
   xmonad $ docks defaults
-    { startupHook = setWMName "LG3D" }
+--    { startupHook = setWMName "LG3D" } -- some old crap to make old java work
+    { startupHook = setWMName "XMonad" }
 
 
 
