@@ -400,8 +400,8 @@ myScratchPads = [ NS "terminalclean" spawnTermc findTermc manageTermc, NS "termi
 main = do 
   xmproc <- spawnPipe "xmobar -x 0 /home/jakup/.config/xmobar/xmobarrc"
   xmonad $ docks defaults
---    { startupHook = setWMName "LG3D" } -- some old crap to make old java work
-    { startupHook = setWMName "XMonad" }
+    { startupHook = setWMName "LG3D" } -- some old crap to make old java work
+--    { startupHook = setWMName "XMonad" }
 
 
 
